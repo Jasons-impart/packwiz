@@ -24,7 +24,7 @@ Join my Discord server if you need help [here](https://discord.gg/Csh8zbbhCt)!
 - Creation of remote file metadata from JAR files for CurseForge mods
 
 ## Installation
-Prebuilt binaries are available from [GitHub Actions](https://github.com/packwiz/packwiz/actions) - the UI is a bit terrible, but essentially select the top build, then download the artifact ZIP for your system at the bottom of the page.  
+Prebuilt binaries are available from [GitHub Actions](https://github.com/packwiz/packwiz/actions) - the UI is a bit terrible, but essentially select the top build, then download the artifact ZIP for your system at the bottom of the page.  (But they all expired now)
 
 Another option is to use [nightly.link](https://nightly.link/packwiz/packwiz/workflows/go/main). Just go to the page, and download the artifact for your system.  
 
