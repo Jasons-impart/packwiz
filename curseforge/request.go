@@ -156,7 +156,6 @@ type modInfo struct {
 	GameID                 uint32        `json:"gameId"`
 	PrimaryCategoryID      uint32        `json:"primaryCategoryId"`
 	ClassID                uint32        `json:"classId"`
-	Status                 uint32        `json:"status"`
 	IsAvailable            bool          `json:"isAvailable"`
 	LatestFiles            []modFileInfo `json:"latestFiles"`
 	GameVersionLatestFiles []struct {
@@ -233,7 +232,6 @@ type modFileInfo struct {
 	Date         time.Time `json:"fileDate"`
 	Length       uint64    `json:"fileLength"`
 	FileType     fileType  `json:"releaseType"`
-	FileStatus   uint32    `json:"fileStatus"`
 	IsAvailable  bool      `json:"isAvailable"`
 	// According to the CurseForge API T&Cs, this must not be saved or cached
 	DownloadURL  string   `json:"downloadUrl"`
