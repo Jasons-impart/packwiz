@@ -100,7 +100,7 @@ var detectCmd = &cobra.Command{
 		for _, v := range res.ExactMatches {
 			// 检查模组是否仍然有效（未下架）
 			if modInfo, ok := modInfosMap[v.ID]; ok {
-				if !modInfo.IsAvailable || modInfo.Status != 1 {
+				if !modInfo.IsAvailable {
 					fmt.Printf("Skipping %s (Project ID: %d) - no longer available on CurseForge\n", modPaths[v.File.Fingerprint], v.ID)
 					unmatchedFingerprints = append(unmatchedFingerprints, v.File.Fingerprint)
 					continue
@@ -108,7 +108,7 @@ var detectCmd = &cobra.Command{
 			}
 			
 			// 检查文件是否有效
-			if !v.File.IsAvailable || v.File.FileStatus != 1 {
+			if !v.File.IsAvailable {
 				fmt.Printf("Skipping %s - file no longer available on CurseForge\n", modPaths[v.File.Fingerprint])
 				unmatchedFingerprints = append(unmatchedFingerprints, v.File.Fingerprint)
 				continue
