@@ -158,7 +158,6 @@ type modInfo struct {
 	ClassID                uint32        `json:"classId"`
 	Status                 uint32        `json:"status"`
 	IsAvailable            bool          `json:"isAvailable"`
-	AllowModDistribution   bool          `json:"allowModDistribution"`
 	LatestFiles            []modFileInfo `json:"latestFiles"`
 	GameVersionLatestFiles []struct {
 		// TODO: check how twitch launcher chooses which one to use, when you are on beta/alpha channel?!
