@@ -96,7 +96,24 @@ var detectCmd = &cobra.Command{
 		}
 
 		fmt.Println("Creating metadata files...")
+		var unmatchedFingerprints []uint32
 		for _, v := range res.ExactMatches {
+			// 检查模组是否仍然有效（未下架）
+			if modInfo, ok := modInfosMap[v.ID]; ok {
+				if !modInfo.IsAvailable || modInfo.Status != 1 {
+					fmt.Printf("Skipping %s (Project ID: %d) - no longer available on CurseForge\n", modPaths[v.File.Fingerprint], v.ID)
+					unmatchedFingerprints = append(unmatchedFingerprints, v.File.Fingerprint)
+					continue
+				}
+			}
+			
+			// 检查文件是否有效
+			if !v.File.IsAvailable || v.File.FileStatus != 1 {
+				fmt.Printf("Skipping %s - file no longer available on CurseForge\n", modPaths[v.File.Fingerprint])
+				unmatchedFingerprints = append(unmatchedFingerprints, v.File.Fingerprint)
+				continue
+			}
+			
 			err = createModFile(modInfosMap[v.ID], v.File, &index, false)
 			if err != nil {
 				fmt.Println(err)
@@ -111,6 +128,11 @@ var detectCmd = &cobra.Command{
 					os.Exit(1)
 				}
 			}
+		}
+		
+		// 如果有跳过的文件，更新未匹配列表
+		if len(unmatchedFingerprints) > 0 {
+			res.UnmatchedFingerprints = append(res.UnmatchedFingerprints, unmatchedFingerprints...)
 		}
 		fmt.Println("Detection complete!")
 
